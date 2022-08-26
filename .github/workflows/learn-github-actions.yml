@@ -9,7 +9,7 @@ on:
         type: string
       needToGoBack:
         description: "whether need to go back after learning future tips"
-        required: true
+        required: false
         type: string
 
 jobs:
@@ -23,9 +23,8 @@ jobs:
           git config user.email "weijianduan0302@gmail.com"
       - name: log today's learning
         run: |
-          echo ${{ inputs.needToGoBack }}
           date=$(date '+%Y-%m-%d') 
-          updateMessage="|                  | ${{ inputs.tipOfToday }}                |  ${date}     | ️${{ inputs.needToGoBack }}    |"
+          updateMessage="|                  | ${{ inputs.tipOfToday }}                |  ${date}     | ️☑️    |"
           echo ${updateMessage} >> README.md
           commitMsg="[${date}] ${{ inputs.tipOfToday }}"
           git add README.md
