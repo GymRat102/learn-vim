@@ -48,3 +48,4 @@
 | 第 6 章 管理多个文件       |                                                     |                |       |
 |                            | 技巧37 - 用缓冲区列表管理打开的文件                 | 2022-08-13     | ☑️    |
 | | test - today’s learning | 2022-08-26 | ️test - today’s learning |
+| | test - another tip of today | 2022-08-26 | ️test - another tip of today |
