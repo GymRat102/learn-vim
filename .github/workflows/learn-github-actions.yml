@@ -1,14 +1,32 @@
 name: learn-github-actions
+
 on:
-  push:
   workflow_dispatch:
+    inputs:
+      tipOfToday:
+        description: "which tip I learn today"
+        required: true
+        type: string
+      needToGoBack:
+        description: "whether need to go back after learning future tips"
+        required: true
+        type: string
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "weijianduan0302@gmail.com"
+      - name: log today's learning
+        run: |
+          date=$(date '+%Y-%m-%d') 
+          updateMessage="|                  | ${{ inputs.tipOfToday }}                |  ${date}     | ️${{ inputs.needToGoBack }}    |"
+          echo ${updateMessage} >> README.md
+          commitMsg="[${date}] ${{ inputs.tipOfToday }}"
+          git add README.md
+          git commit -m "${commitMsg}"
+          git push origin HEAD:main
