@@ -7,10 +7,6 @@ on:
         description: "which tip I learn today"
         required: true
         type: string
-      needToGoBack:
-        description: "whether need to go back after learning future tips"
-        required: false
-        type: string
 
 jobs:
   update-vim-tip-learing-of-today:
